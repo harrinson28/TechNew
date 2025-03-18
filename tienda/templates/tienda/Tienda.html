@@ -1,0 +1,69 @@
+{% extends "TiendaHApp/base.html"%}
+{%load static%}
+{%block content%}
+
+<div class="container">
+
+<div style="float:right;  " >
+
+  {%if request.user.is_authenticated%}
+
+  
+    <span style="position: relative; right: -350px; top:35px ">{%  include "carro/widget.html" %}</span>
+
+  {%else%}
+    
+  <div  class="alert alert-danger ">Inicia sesion para ver carro</div>
+
+  {%endif%}
+  
+</div>
+
+  <div class="row" >
+
+
+
+{% for Producto in Productos %}
+
+<div class="col-md-3" style="height: 500px; width: 300px;">
+
+  
+
+  <div  class="card" style="width: 115%; margin: 7px 7 px;"  >
+    
+    
+    <img src="{{ Producto.imagen.url }}" class="card-img-top" alt=""style="width: 300px; height: 200px; width:100%; padding:20px " >
+
+    
+    <div class="card-body" style="text-align: center;" >
+
+        <h2 style="font-size: 100%;" class="card-title" ><strong>{{Producto.nombre}}</strong></h2>
+        <p class="card_text"> ${{Producto.precio}}</p>
+
+    </div>
+    <div  class="card-footer text-center" >
+
+      <a href="{% url 'carro:agregar' Producto.id %}"  class="btn btn-primary"> Añadir al carrito </a> 
+      <a href="#"  class="btn btn-sm btn-success"> Comprar </a> 
+    
+
+
+
+
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+  {%endfor%}
+    
+  </div>
+</div>
+
+
+
+{%endblock%}

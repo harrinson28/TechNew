@@ -1,0 +1,43 @@
+{% extends "TiendaHApp/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<style>
+    .white-tras {
+        background-color:rgba(255, 255, 255, 0); 
+        color: white; font-family: 
+        Arial, sans-serif;
+        text-align: center;
+        color: white;;
+    }
+</style>
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="white-tras">Iniciar Sesión</h2>
+
+            <form method="post" class="white-tras" style="text-align: left;">
+                {% csrf_token %}
+                
+                <!-- Mostrar mensajes de error si existen -->
+                {% if messages %}
+                    <div class="alert alert-danger">
+                        {% for mensaje in messages %}
+                            <p class="mb-0">{{ mensaje }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <!-- Renderizar el formulario con crispy -->
+                {{ form|crispy }}
+
+                <button type="submit" class="btn btn-success w-100 mt-3">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

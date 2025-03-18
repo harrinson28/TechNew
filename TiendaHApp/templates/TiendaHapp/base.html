@@ -1,0 +1,132 @@
+<html>
+
+<head>
+
+    {% load static %}
+
+    <!-- Bootstrap -->
+    <link href="{% static  'TiendaHApp/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- Fonts -->
+    
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap"rel="stylesheet">
+
+
+    <!-- Styles -->
+    <link href="{% static  'TiendaHApp/css/gestion.css'%}" rel="stylesheet">
+</head>
+
+<body>
+
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block" >
+      
+      <span class="content" style="
+      color: white;
+      font-family: 'Uncial Antiqua', cursive;
+      text-transform: none;
+      font-size: 70px; 
+  ">TechNEW</span>
+      </h1>
+
+      <div class="infoUs" style="background-color:4e5053;border-radius:10px; width: 100%; font-size: 19px; font-weight: bold; border: 2px solid #76cedb; padding: 1px"> 
+
+        {% if user.is_authenticated %}
+
+        Bienvenido {{user.username}} &nbsp;&nbsp; <a style="color:rgb(211, 8, 66);" href="{%url 'cerrar_sesion' %}">Cerrar Sesion</a> 
+        
+        &nbsp;&nbsp;<div class="navbar-brand" style="">
+          <a href="{% url 'dashboard' %}" style="color:rgb(255, 255, 255);">Administracion</a> &nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+      
+
+
+        {%else%}
+
+
+        <a style="color: white;" href="{% url 'iniciar_sesion' %}"> ¿Iniciar sesion?</a> &nbsp;&nbsp; <a style="color: rgb(255, 255, 255);" href="{%url 'Autenticacion' %}">¿Registarme?</a> &nbsp;&nbsp;&nbsp;&nbsp;
+
+
+        {%endif%}
+
+
+
+      </div>
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav"style="border-radius:10px">
+    <div class="container">
+      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="{% url 'home' %}">Gestión de Pedidos</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse"id="navbarResponsive" >
+        <ul class="navbar-nav mx-auto" >
+          <li class="nav-item {%if request.path == '/home/' %}active{%endif%} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'home' %}">Inicio</a>
+          </li>
+          <li class="nav-item {%if request.path == '/servicios/' %}active{%endif%} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'servicios' %}">Servicios</a>
+          </li>
+          <li class="nav-item {%if request.path == '/tienda/' %}active{%endif%} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'tienda' %}">Tienda</a>
+          </li>
+          <li class="nav-item {%if request.path == '/contacto/' %}active{%endif%} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item {%if request.path|slice:':5' == '/blog/' %}active{%endif%} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'blog' %}">Blog</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!--contenido cambiante-->
+{%block content %}
+
+{% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer text-faded text-center py-5"style="border-radius:10px">
+      <div class="container">
+        <p class="m-0">
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	    </p>
+        <p class="m-0 mbt">
+        	<a href="sample.html" class="link">Política de privacidad</a> ·
+        	<a href="sample.html" class="link">Aviso legal</a> ·
+        	<a href="sample.html" class="link">Cookies</a>
+		</p>
+        <p class="m-0 mbt1">&copy; TechNEW</p>
+      </div>
+	</footer>
+
+    <!-- Bootstrap -->
+    <script src="{% static  'TiendaHApp/vendor/jquery/jquery.min.js'%}"></script>
+    <script src="{% static  'TiendaHApp/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+</body>
+
+
+</html>

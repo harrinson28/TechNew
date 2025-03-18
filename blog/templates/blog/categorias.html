@@ -1,0 +1,47 @@
+{% extends "TiendaHApp/base.html"%}
+{%load static%}
+{%block content%}
+
+
+{% for post in posts %}
+
+
+<section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{post.imagen.url}}" alt="" style="width:60%;">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-4" >
+            <span style="font-size: 100%;"  class="section-heading-lower">{{post.titulo}}</span>
+            <span class="section-heading-upper">{{post.contenido}}</span></h2>
+            <span style="position: absolute; bottom: 0; right: 398; font-size:80%" class="section-heading-upper">Autor:  {{post.autor}} </span></h2>
+            <h1></h1>
+        
+          
+    
+      
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%endfor%}
+<section>
+  <div style="text-align :center  ;    width: 75%;  margin:auto; color:aliceblue">
+      Categorias: 
+
+    {% for post in posts %}
+    {% for categoria in  post.categorias.all %} 
+
+    {{   categoria.nombre}}  &nbsp;&nbsp;&nbsp; 
+    {%endfor%}
+
+  </div>
+
+
+  {%endfor%}
+
+</section>c
+ 
+
+{%endblock%}

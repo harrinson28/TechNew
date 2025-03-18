@@ -1,0 +1,33 @@
+{%extends "TiendaHApp/base.html"%}
+{%load static%}
+{%block content%}
+<P class="stilo2">Contacto por Email</P style="color:white;">
+    <div class="stilocontacto" > 
+
+    {% if "valido" in request.GET %}
+
+        <p>  Informacion enviada correctamente </p>
+
+        {% endif %}
+
+    {% if "invalido" in request.GET%}
+
+        <P> ERROR al enviar el mensaje </P>
+
+        {% endif %}
+    
+    <div> <form action="" method ="post" style="text-align: center; ">  
+        {%csrf_token%}
+        <table style="margin: 20px auto; color:aliceblue"> {{ miformularo.as_table}}</table>
+    <input type="submit" value="Enviar" style="width:80px"></div>
+
+
+
+</form>
+</div>
+
+
+<p class="correo">Contacto: harrinsonxt28@gmail.com</p>
+
+
+{%endblock%}

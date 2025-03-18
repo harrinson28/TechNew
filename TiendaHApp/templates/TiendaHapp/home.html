@@ -1,0 +1,167 @@
+{% extends "TiendaHApp/base.html" %}
+{% load static %}
+{% block content %}
+<p></p>
+<p></p>
+<!-- Contenedor del Slider -->
+<div id="slider-container">
+  <div id="slider">
+    
+    <!-- Primera Sección -->
+    <div class="slide active">
+      <div class="container">
+        <div class="intro">
+          <img class="intro-img img-fluid rounded" src="{% static 'TiendaHApp/img/principal.png' %}" alt="Puntualidad">
+          <div class="intro-text bg-faded p-5 rounded">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper"style="color: aliceblue;">Puntualidad</span>
+              <span class="section-heading-lower">El mejor stock</span>
+            </h2>
+            <p class="mb-3">En la puerta de tu casa en menos de 48 h con el envío normal. En menos de 24 h con el envío express.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segunda Sección -->
+    <div class="slide" >
+      <div class="container" >
+        <div class="intro" >
+          <img class="intro-img img-fluid rounded" src="{% static 'TiendaHApp/img/seguro.png' %}" alt="Seguridad">
+          <div class="intro-text bg-faded p-5 rounded">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper" style="color: aliceblue;">Seguridad</span>
+              <span class="section-heading-lower">Seguridad en tus compras</span>
+            </h2>
+            <p class="mb-3">Nos destacamos por la seguridad en nuestra página web, protegiendo la información personal y financiera con tecnología de cifrado avanzada y monitoreo continuo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<style>
+  /* Contenedor del Slider */
+  #slider-container {
+    position: relative;
+    width: 100%;
+    min-height: 800px; /* Se adapta automáticamente al contenido */
+    overflow: hidden;
+  }
+
+  /* Contenedor de las secciones */
+  #slider {
+    position: relative;
+    width: 100%;
+  }
+
+  /* Slide (Cada Sección) */
+  .slide {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+  }
+
+  /* Mostrar el slide activo */
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Asegurar que las imágenes y texto estén alineados */
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Alineación de imagen y texto */
+  .intro {
+    display: flex;
+    align-items: center;
+    gap: -20px; /* Espacio entre la imagen y el texto */
+    max-width: 80%;
+  }
+
+   /* Imagen aún más grande */
+  .intro-img {
+    width: 100%;
+    height: 200%; /* Mayor altura para mayor impacto */
+    object-fit: cover;
+    border-radius: 15px;
+  }
+
+  /* Caja de Texto */
+  .intro-text {
+    width: 50%;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  /* Estilos de Texto */
+  .section-heading {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .section-heading-upper {
+    font-size: 18px;
+    font-weight: lighter;
+    color: #888;
+  }
+
+  .section-heading-lower {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Evitar espacios extra debajo del slider */
+  .page-section.cta {
+    margin-top: -20px; /* Ajusta según necesidad */
+  }
+</style>
+
+<!--cambiar de sección automáticamente -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let slides = document.querySelectorAll(".slide");
+    let index = 0;
+
+    function cambiarSlide() {
+      slides[index].classList.remove("active");
+      index = (index + 1) % slides.length;
+      slides[index].classList.add("active");
+    }
+
+    setInterval(cambiarSlide, 5000); // Cambia cada 5 segundos
+  });
+</script>
+
+<!-- Message -->
+<section class="page-section cta" style="border-radius:10px">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <div class="cta-inner text-center rounded">
+          <h2 class="section-heading mb-4">
+            <span class="section-heading-upper" style="color: aliceblue;">Compromiso total</span>
+            <span class="section-heading-lower">Garantizado</span>
+          </h2>
+          <p class="mb-0">Con más de 10 años de experiencia en el sector tecnológico, en nuestra tienda contamos con el conocimiento y las herramientas necesarias para ofrecerle los últimos avances en tecnología, garantizando productos de alta calidad, un servicio confiable y una entrega puntual hasta la puerta de su hogar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
